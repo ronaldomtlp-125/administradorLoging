@@ -5,29 +5,24 @@ import java.util.List;
 
 public class ControladorLogico {
 
+    MensajeLogin mensaje = new MensajeLogin();
     ControladorPersistencia controlPersis = new ControladorPersistencia();
 
     //Mensaje para el login
     public MensajeLogin traerMensajeLogin(String nombreUsuario, String contraseniaUsuario) {
-        MensajeLogin mensaje = new MensajeLogin();
         List<UsuarioCliente> listaUsuarios = traerUsuariosL();
 
         for (UsuarioCliente usu : listaUsuarios) {
             if (usu.getUsuario().equals(nombreUsuario)) {
                 if (usu.getContrasenia().equals(contraseniaUsuario)) {
-                    mensaje.setMsContexto("acceso_permitido");
-                    mensaje.setMxNombreUsuario(nombreUsuario);
-                    mensaje.setMxRol(usu.getRol());
+                    settearMensaje("acceso_permitido", nombreUsuario, usu.getRol());
                     return mensaje;
                 } else {
-                    mensaje.setMsContexto("contraseña_incorrecta");
-                    mensaje.setMxNombreUsuario(nombreUsuario);
-                    mensaje.setMxRol("");
+                    settearMensaje("contraseña_incorrecta", nombreUsuario, "");
+                    return mensaje;
                 }
             } else {
-                mensaje.setMsContexto("usuario_incorrecto");
-                mensaje.setMxNombreUsuario(nombreUsuario);
-                mensaje.setMxRol("");
+                settearMensaje("usuario_incorrecto", nombreUsuario, "");
             }
         }
         return mensaje;
@@ -38,4 +33,10 @@ public class ControladorLogico {
         return controlPersis.traerUsuariosP();
     }
 
+    //Metodo reutilizable para modificar el objeto mensaje para la seccion de inicio
+    public void settearMensaje(String contexto, String nombreUsuario, String rol) {
+        mensaje.setMsContexto(contexto);
+        mensaje.setMxNombreUsuario(nombreUsuario);
+        mensaje.setMxRol(rol);
+    }
 }

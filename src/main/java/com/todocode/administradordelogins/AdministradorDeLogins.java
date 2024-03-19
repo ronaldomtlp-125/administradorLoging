@@ -11,7 +11,7 @@ public class AdministradorDeLogins {
         //EditarRegistro editarRegistro = new EditarRegistro();
         VerRegistrosAdmin registroAdmin = new VerRegistrosAdmin();
         //VerRegistrosUsu registroUsu = new VerRegistrosUsu();
-        registroAdmin.setVisible(true);
-        registroAdmin.setLocationRelativeTo(null);
+        inicio.setVisible(true);
+        inicio.setLocationRelativeTo(null);
     } 
 }

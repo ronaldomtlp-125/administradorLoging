@@ -150,6 +150,19 @@ public class Inicio extends javax.swing.JFrame {
         
         MensajeLogin mensaje = controlLogico.traerMensajeLogin(nombreUsuario, contraseniaUsuario);
         
+        if(mensaje.getMsContexto().equals("acceso_permitido")){
+            if(mensaje.getMxRol().equals("administrador")){
+                mostrarMensajePantalla(("Bienvenido " + mensaje.getMxNombreUsuario() + ", su rol es 'Administrador'"), "info", "Inicio de sesión exitoso");
+                navegarRegistrosAdmin();
+            } else{
+                mostrarMensajePantalla(("Bienvenido " + mensaje.getMxNombreUsuario() + ", su rol es 'Usuario'"), "info", "Inicio de sesión exitoso");
+                navegarRegistrosUsu();
+            }
+        } else if (mensaje.getMsContexto().equals("contraseña_incorrecta")){
+            mostrarMensajePantalla(("La contraseña del usuario '" + mensaje.getMxNombreUsuario() + "' es incorrecta"), "advertencia", "Ocurrió un problema");
+        } else {
+            mostrarMensajePantalla(("El usuario '" + mensaje.getMxNombreUsuario() + "' no existe en nuestro sistema"), "error", "Error al iniciar sesión");
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -189,5 +202,15 @@ public class Inicio extends javax.swing.JFrame {
         dialog.setVisible(true);
     }
     
+    public void navegarRegistrosAdmin(){
+        registrosAdmin.setVisible(true);
+        registrosAdmin.setLocationRelativeTo(null);
+        this.dispose();
+    }
     
+    public void navegarRegistrosUsu(){
+        registrosUsu.setVisible(true);
+        registrosUsu.setLocationRelativeTo(null);
+        this.dispose();
+    }
 }
