@@ -43,4 +43,23 @@ public class ControladorLogico {
     public void borrarRegistroL(int idUsuario) {
         controlPersis.borrarRegistroP(idUsuario);
     }
+
+    public void crearUsuarioL(String nombreUsu, String contraseniaUsu, String rolUsu) {
+        UsuarioCliente usuarioAux = new UsuarioCliente(nombreUsu, contraseniaUsu, rolUsu);
+        controlPersis.crearUsuarioP(usuarioAux);
+    }
+
+    public boolean existeUsuario(String nombreUsu) {
+        boolean existeAux = false;
+        List<UsuarioCliente> listaAux = traerUsuariosL();
+        for(UsuarioCliente usu : listaAux){
+            if(usu.getUsuario().equalsIgnoreCase(nombreUsu)){
+                existeAux = true;
+                return existeAux;
+            } else{
+                existeAux = false;
+            }
+        }
+        return existeAux;
+    }
 }

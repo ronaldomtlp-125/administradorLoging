@@ -21,4 +21,8 @@ public class ControladorPersistencia {
         }
     }
 
+    public void crearUsuarioP(UsuarioCliente usuarioAux) {
+        usuJpa.create(usuarioAux);
+    }
+
 }

@@ -11,6 +11,8 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
 
     ControladorLogico controlLogico = null;
     Inicio inicio = null;
+    CrearRegistro crearRegistro = null;
+    EditarRegistro editarRegistro = null;
 
     public VerRegistrosAdmin() {
         controlLogico = new ControladorLogico();
@@ -112,6 +114,11 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
         btnEditarUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnEditarUsuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Imagenes\\Iconos\\editar (1).png")); // NOI18N
         btnEditarUsuario.setText("Editar usuario");
+        btnEditarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnCrearUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnCrearUsuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Imagenes\\Iconos\\guardar (1).png")); // NOI18N
@@ -230,7 +237,7 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnCrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearUsuarioActionPerformed
-
+        navegarCargarRegistro();
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -255,6 +262,10 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
             mostrarMensajePantalla("No hay registros en la tabla", "error", "Error al borrar");
         }
     }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
+
+    private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
+        navegarEditarRegistro();
+    }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
@@ -308,5 +319,19 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
         JDialog dialog = optionPane.createDialog(titulo);
         dialog.setAlwaysOnTop(true);
         dialog.setVisible(true);
+    }
+    
+    public void navegarCargarRegistro(){
+        crearRegistro = new CrearRegistro();
+        crearRegistro.setVisible(true);
+        crearRegistro.setLocationRelativeTo(null);
+        this.dispose();
+    }
+    
+    public void navegarEditarRegistro(){
+        editarRegistro = new EditarRegistro();
+        editarRegistro.setVisible(true);
+        editarRegistro.setLocationRelativeTo(null);
+        this.dispose();
     }
 }
