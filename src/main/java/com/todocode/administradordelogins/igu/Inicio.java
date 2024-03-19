@@ -1,7 +1,9 @@
 package com.todocode.administradordelogins.igu;
 
-public class Inicio extends javax.swing.JFrame {
+import com.todocode.administradordelogins.logica.ControladorLogico;
 
+public class Inicio extends javax.swing.JFrame {
+    ControladorLogico controlLogico = new ControladorLogico();
     public Inicio() {
         initComponents();
     }
