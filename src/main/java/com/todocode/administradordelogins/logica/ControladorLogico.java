@@ -29,12 +29,12 @@ public class ControladorLogico {
     }
 
     //Metodo reutilizable para traer toda la lista de registros de la tabla usuarios
-    private List<UsuarioCliente> traerUsuariosL() {
+    public List<UsuarioCliente> traerUsuariosL() {
         return controlPersis.traerUsuariosP();
     }
 
     //Metodo reutilizable para modificar el objeto mensaje para la seccion de inicio
-    public void settearMensaje(String contexto, String nombreUsuario, String rol) {
+    private void settearMensaje(String contexto, String nombreUsuario, String rol) {
         mensaje.setMsContexto(contexto);
         mensaje.setMxNombreUsuario(nombreUsuario);
         mensaje.setMxRol(rol);

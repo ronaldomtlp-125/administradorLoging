@@ -1,11 +1,19 @@
 package com.todocode.administradordelogins.igu;
 
+import com.todocode.administradordelogins.logica.ControladorLogico;
+import com.todocode.administradordelogins.logica.UsuarioCliente;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class VerRegistrosUsu extends javax.swing.JFrame {
+    ControladorLogico controlLogico = null;
     Inicio inicio = null;
+
     public VerRegistrosUsu() {
+        controlLogico = new ControladorLogico();
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -21,6 +29,11 @@ public class VerRegistrosUsu extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setText("Registro de Usuarios");
@@ -137,6 +150,10 @@ public class VerRegistrosUsu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarTabla();
+    }//GEN-LAST:event_formWindowOpened
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JLabel jLabel1;
@@ -148,4 +165,24 @@ public class VerRegistrosUsu extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblRegistros;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+        DefaultTableModel modeloTabla = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        String nombreColumnas[] = {"ID", "Nombre Usuario", "Contraseña", "Rol"};
+        modeloTabla.setColumnIdentifiers(nombreColumnas);
+        
+        List<UsuarioCliente> listaUsuarios = controlLogico.traerUsuariosL();
+        for(UsuarioCliente usu : listaUsuarios){
+            Object listaRegistros[] = {usu.getId(), usu.getUsuario(), usu.getContrasenia(), usu.getRol()};
+            modeloTabla.addRow(listaRegistros);
+        }
+
+        tblRegistros.setModel(modeloTabla);
+    }
 }
