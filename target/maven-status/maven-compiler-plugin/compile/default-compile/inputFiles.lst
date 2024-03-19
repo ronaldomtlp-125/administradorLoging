@@ -1,6 +1,14 @@
-C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\VerRegistrosAdmin.java
-C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\Inicio.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\logica\MensajeLogin.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\persistencia\exceptions\NonexistentEntityException.java
 C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\CrearRegistro.java
 C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\AdministradorDeLogins.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\persistencia\UsuarioClienteJpaController.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\VerRegistrosAdmin.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\persistencia\exceptions\IllegalOrphanException.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\Inicio.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\persistencia\ControladorPersistencia.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\logica\ControladorLogico.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\persistencia\exceptions\PreexistingEntityException.java
 C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\EditarRegistro.java
 C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\igu\VerRegistrosUsu.java
+C:\Users\PC\Documents\NetBeansProjects\AdministradorDeLogins\src\main\java\com\todocode\administradordelogins\logica\UsuarioCliente.java
