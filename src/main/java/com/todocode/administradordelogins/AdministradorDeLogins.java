@@ -1,8 +1,12 @@
 package com.todocode.administradordelogins;
 
+import com.todocode.administradordelogins.igu.Inicio;
+
 public class AdministradorDeLogins {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        inicio.setLocationRelativeTo(null);
     } 
 }
