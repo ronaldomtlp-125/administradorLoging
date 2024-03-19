@@ -1,7 +1,7 @@
 package com.todocode.administradordelogins.igu;
 
 public class VerRegistrosAdmin extends javax.swing.JFrame {
-    Inicio inicio = new Inicio();
+    Inicio inicio = null;
     public VerRegistrosAdmin() {
         initComponents();
     }
@@ -197,6 +197,7 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        inicio = new Inicio();
         inicio.setVisible(true);
         inicio.setLocationRelativeTo(null);
         this.dispose();

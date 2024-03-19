@@ -2,9 +2,14 @@ package com.todocode.administradordelogins.igu;
 
 import com.todocode.administradordelogins.logica.ControladorLogico;
 import com.todocode.administradordelogins.logica.MensajeLogin;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
     ControladorLogico controlLogico = new ControladorLogico();
+    VerRegistrosAdmin registrosAdmin = new VerRegistrosAdmin();
+    VerRegistrosUsu registrosUsu = new VerRegistrosUsu();
+    
     public Inicio() {
         initComponents();
     }
@@ -145,8 +150,6 @@ public class Inicio extends javax.swing.JFrame {
         
         MensajeLogin mensaje = controlLogico.traerMensajeLogin(nombreUsuario, contraseniaUsuario);
         
-        
-        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
@@ -171,4 +174,20 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+    
+    public void mostrarMensajePantalla(String texto, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(texto);
+        if (tipo.equalsIgnoreCase("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equalsIgnoreCase("advertencia")) {
+            optionPane.setMessageType(JOptionPane.WARNING_MESSAGE);
+        } else if (tipo.equalsIgnoreCase("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
+    
+    
 }
