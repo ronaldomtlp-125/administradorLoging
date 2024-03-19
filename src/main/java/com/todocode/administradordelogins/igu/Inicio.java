@@ -1,6 +1,7 @@
 package com.todocode.administradordelogins.igu;
 
 import com.todocode.administradordelogins.logica.ControladorLogico;
+import com.todocode.administradordelogins.logica.MensajeLogin;
 
 public class Inicio extends javax.swing.JFrame {
     ControladorLogico controlLogico = new ControladorLogico();
@@ -139,7 +140,13 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
+        String nombreUsuario = txtUsuario.getText();
+        String contraseniaUsuario = txtContrasenia.getText();
+        
+        MensajeLogin mensaje = controlLogico.traerMensajeLogin(nombreUsuario, contraseniaUsuario);
+        
+        
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
