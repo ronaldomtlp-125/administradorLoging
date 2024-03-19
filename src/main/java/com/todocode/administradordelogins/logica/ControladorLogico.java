@@ -39,4 +39,8 @@ public class ControladorLogico {
         mensaje.setMxNombreUsuario(nombreUsuario);
         mensaje.setMxRol(rol);
     }
+
+    public void borrarRegistroL(int idUsuario) {
+        controlPersis.borrarRegistroP(idUsuario);
+    }
 }

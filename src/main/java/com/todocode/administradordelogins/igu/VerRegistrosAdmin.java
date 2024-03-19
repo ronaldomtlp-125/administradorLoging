@@ -1,8 +1,19 @@
 package com.todocode.administradordelogins.igu;
 
+import com.todocode.administradordelogins.logica.ControladorLogico;
+import com.todocode.administradordelogins.logica.UsuarioCliente;
+import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 public class VerRegistrosAdmin extends javax.swing.JFrame {
+
+    ControladorLogico controlLogico = null;
     Inicio inicio = null;
+
     public VerRegistrosAdmin() {
+        controlLogico = new ControladorLogico();
         initComponents();
     }
 
@@ -26,6 +37,11 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
         btnCrearUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setText("Registro de Usuarios");
@@ -78,10 +94,20 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
         btnActualizar.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Imagenes\\Iconos\\actualizar (1).png")); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnBorrarUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnBorrarUsuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Imagenes\\Iconos\\borrar (1).png")); // NOI18N
         btnBorrarUsuario.setText("Borrar usuario");
+        btnBorrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarUsuarioActionPerformed(evt);
+            }
+        });
 
         btnEditarUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnEditarUsuario.setIcon(new javax.swing.ImageIcon("C:\\Users\\PC\\Desktop\\Imagenes\\Iconos\\editar (1).png")); // NOI18N
@@ -207,6 +233,29 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCrearUsuarioActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarTabla();
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarUsuarioActionPerformed
+        if (tblRegistros.getRowCount() > 0) {
+            if (tblRegistros.getSelectedRow() != -1) {
+                int idUsuario = Integer.parseInt(String.valueOf(tblRegistros.getValueAt(tblRegistros.getSelectedRow(), 0)));
+                controlLogico.borrarRegistroL(idUsuario);
+                mostrarMensajePantalla("El registro seleccionado fue borrado con exito", "info", "Operación realizada");
+                cargarTabla();
+            } else{
+                mostrarMensajePantalla("No se ha seleccionado el registro a borrar", "advertencia", "Ocurrió un problema");
+            }
+        } else{
+            mostrarMensajePantalla("No hay registros en la tabla", "error", "Error al borrar");
+        }
+    }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrarUsuario;
@@ -223,4 +272,41 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblRegistros;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+        DefaultTableModel modeloTabla = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        String nombreColumnas[] = {"ID", "Nombre Usuario", "Contraseña", "Rol"};
+        modeloTabla.setColumnIdentifiers(nombreColumnas);
+
+        List<UsuarioCliente> listaUsuarios = controlLogico.traerUsuariosL();
+
+        if (listaUsuarios != null) {
+            for (UsuarioCliente usu : listaUsuarios) {
+                Object listaRegistros[] = {usu.getId(), usu.getUsuario(), usu.getContrasenia(), usu.getRol()};
+                modeloTabla.addRow(listaRegistros);
+            }
+        }
+
+        tblRegistros.setModel(modeloTabla);
+    }
+
+    public void mostrarMensajePantalla(String texto, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(texto);
+        if (tipo.equalsIgnoreCase("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equalsIgnoreCase("advertencia")) {
+            optionPane.setMessageType(JOptionPane.WARNING_MESSAGE);
+        } else if (tipo.equalsIgnoreCase("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
 }

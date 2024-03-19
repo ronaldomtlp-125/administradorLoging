@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class VerRegistrosUsu extends javax.swing.JFrame {
+
     ControladorLogico controlLogico = null;
     Inicio inicio = null;
 
@@ -176,11 +177,14 @@ public class VerRegistrosUsu extends javax.swing.JFrame {
 
         String nombreColumnas[] = {"ID", "Nombre Usuario", "Contraseña", "Rol"};
         modeloTabla.setColumnIdentifiers(nombreColumnas);
-        
+
         List<UsuarioCliente> listaUsuarios = controlLogico.traerUsuariosL();
-        for(UsuarioCliente usu : listaUsuarios){
-            Object listaRegistros[] = {usu.getId(), usu.getUsuario(), usu.getContrasenia(), usu.getRol()};
-            modeloTabla.addRow(listaRegistros);
+
+        if (listaUsuarios != null) {
+            for (UsuarioCliente usu : listaUsuarios) {
+                Object listaRegistros[] = {usu.getId(), usu.getUsuario(), usu.getContrasenia(), usu.getRol()};
+                modeloTabla.addRow(listaRegistros);
+            }
         }
 
         tblRegistros.setModel(modeloTabla);
