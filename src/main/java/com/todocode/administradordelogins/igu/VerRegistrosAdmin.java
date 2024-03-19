@@ -230,6 +230,7 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        mostrarMensajePantalla("Sesion de Usuario terminada, pulse OK para continuar", "info", "Cerrando sesión ...");
         inicio = new Inicio();
         inicio.setVisible(true);
         inicio.setLocationRelativeTo(null);
@@ -264,7 +265,17 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
 
     private void btnEditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUsuarioActionPerformed
-        navegarEditarRegistro();
+        if (tblRegistros.getRowCount() > 0) {
+            if (tblRegistros.getSelectedRow() != -1) {
+                int idUsuario = Integer.parseInt(String.valueOf(tblRegistros.getValueAt(tblRegistros.getSelectedRow(), 0)));
+                editarRegistro = new EditarRegistro(idUsuario);
+                navegarEditarRegistro();
+            } else{
+                mostrarMensajePantalla("No se ha seleccionado el registro a editar", "advertencia", "Ocurrió un problema");
+            }
+        } else{
+            mostrarMensajePantalla("No hay registros en la tabla", "error", "Error al borrar");
+        }
     }//GEN-LAST:event_btnEditarUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -329,7 +340,6 @@ public class VerRegistrosAdmin extends javax.swing.JFrame {
     }
     
     public void navegarEditarRegistro(){
-        editarRegistro = new EditarRegistro();
         editarRegistro.setVisible(true);
         editarRegistro.setLocationRelativeTo(null);
         this.dispose();

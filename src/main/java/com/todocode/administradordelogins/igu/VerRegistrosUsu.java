@@ -3,6 +3,8 @@ package com.todocode.administradordelogins.igu;
 import com.todocode.administradordelogins.logica.ControladorLogico;
 import com.todocode.administradordelogins.logica.UsuarioCliente;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VerRegistrosUsu extends javax.swing.JFrame {
@@ -145,6 +147,7 @@ public class VerRegistrosUsu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        mostrarMensajePantalla("Sesion de Usuario terminada, pulse OK para continuar", "info", "Cerrando sesión ...");
         inicio = new Inicio();
         inicio.setVisible(true);
         inicio.setLocationRelativeTo(null);
@@ -186,7 +189,20 @@ public class VerRegistrosUsu extends javax.swing.JFrame {
                 modeloTabla.addRow(listaRegistros);
             }
         }
-
         tblRegistros.setModel(modeloTabla);
+    }
+    
+    public void mostrarMensajePantalla(String texto, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(texto);
+        if (tipo.equalsIgnoreCase("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equalsIgnoreCase("advertencia")) {
+            optionPane.setMessageType(JOptionPane.WARNING_MESSAGE);
+        } else if (tipo.equalsIgnoreCase("error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
 }

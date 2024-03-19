@@ -171,6 +171,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        mostrarMensajePantalla("Cerrando el sistema, pulse OK para continuar", "info", "Cerrando sistema ...");
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 

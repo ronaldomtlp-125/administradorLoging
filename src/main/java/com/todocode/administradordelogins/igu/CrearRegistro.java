@@ -7,9 +7,10 @@ import javax.swing.JOptionPane;
 public class CrearRegistro extends javax.swing.JFrame {
 
     VerRegistrosAdmin registroAdmin = new VerRegistrosAdmin();
-    ControladorLogico controlLogico = new ControladorLogico();
+    ControladorLogico controlLogico = null;
 
     public CrearRegistro() {
+        controlLogico = new ControladorLogico();
         initComponents();
     }
 
@@ -203,13 +204,13 @@ public class CrearRegistro extends javax.swing.JFrame {
             mostrarMensajePantalla("Porfavor, ingrese la contraseña de usuario.", "advertencia", "Ocurrió un problema");
         } else if (rolUsu.equals("-")) {
             mostrarMensajePantalla("Porfavor, ingrese el rol de usuario.", "advertencia", "Ocurrió un problema");
-        } else{
+        } else {
             existe = controlLogico.existeUsuario(nombreUsu);
-            if(existe){
+            if (existe) {
                 mostrarMensajePantalla("El usuario '" + nombreUsu + "' esta en uso (MAYUS-minus), favor de elegir otro nombre.", "error", "Error al crear usuario");
-            } else{
+            } else {
                 controlLogico.crearUsuarioL(nombreUsu, contraseniaUsu, rolUsu);
-                mostrarMensajePantalla("El usuario '" + nombreUsu +"' se creó correctamente.", "info", "Operacion de creación exitosa");
+                mostrarMensajePantalla("El usuario '" + nombreUsu + "' se creó correctamente.", "info", "Operacion de creación exitosa");
             }
         }
 

@@ -62,4 +62,16 @@ public class ControladorLogico {
         }
         return existeAux;
     }
+    
+    //Metodo reutilizable para traer un usuario de la base de datos
+    public UsuarioCliente traerUsuarioL(int idUsuario) {
+        return controlPersis.traerUsuarioP(idUsuario);
+    }
+
+    public void editarRegistroL(UsuarioCliente usuario, String nombreUsu, String contraseniaUsu, String rolUsu) {
+        usuario.setUsuario(nombreUsu);
+        usuario.setContrasenia(contraseniaUsu);
+        usuario.setRol(rolUsu);
+        controlPersis.editarRegistroP(usuario);
+    }
 }

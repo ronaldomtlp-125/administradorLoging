@@ -25,4 +25,15 @@ public class ControladorPersistencia {
         usuJpa.create(usuarioAux);
     }
 
+    public UsuarioCliente traerUsuarioP(int idUsuario) {
+        return usuJpa.findUsuarioCliente(idUsuario);
+    }
+
+    public void editarRegistroP(UsuarioCliente usuario) {
+        try {
+            usuJpa.edit(usuario);
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
